@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:js_util';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -10,8 +11,21 @@ class UserData {
       required this.name});
 
   UserData.fromDocument(DocumentSnapshot document) {
-    // String id, name, email;
-    // id =  document.
+    Map<String, dynamic>? data = document.data() as Map<String, dynamic>?;
+
+    if (data != null) {
+      id = document.id;
+      name = (data['name'] as String?) ?? "";
+      email = (data['email'] as String?) ?? "";
+      // password = (data['password'] as String?) ?? "";
+      //     // Assuming 'password' is a field in your document
+    } else {
+      // Handle the case where data is null, depending on your requirements
+      id = "";
+      name = "";
+      email = "";
+      password = "";
+    }
   }
 
   late String id;

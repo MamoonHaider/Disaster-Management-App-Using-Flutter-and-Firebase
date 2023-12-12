@@ -19,6 +19,8 @@ class UserAuth extends ChangeNotifier {
     try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
           email: userData!.email, password: userData.password);
+      await loadLoggedUser(firebaseUser: result.user);
+      onSuccess!();
     } catch (e) {
       onFail!("Follwoing error has occured: $e");
     }

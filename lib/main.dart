@@ -1,3 +1,4 @@
+import 'package:dms/Providers/userAuthDetailsProvider.dart';
 import 'package:dms/Screens/signupScreen.dart';
 import 'package:dms/Screens/themeScreen.dart';
 import 'package:dms/Providers/loginScreenProvider.dart';
@@ -19,6 +20,7 @@ class Dms extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => LoginScreenProvider()),
           ChangeNotifierProvider(create: (_) => ThemeChangerProvider()),
+          ChangeNotifierProvider(create: (_) => UserAuth()),
         ],
         child: Builder(builder: (BuildContext context) {
           final themeChanger = Provider.of<ThemeChangerProvider>(context);
@@ -26,7 +28,7 @@ class Dms extends StatelessWidget {
             themeMode: themeChanger.themeMode,
             theme: ThemeData(brightness: Brightness.light),
             darkTheme: ThemeData(brightness: Brightness.dark),
-            initialRoute: '/themeScreen',
+            initialRoute: '/signupScreen',
             routes: {
               '/signupScreen': (context) => SignupScreen(),
               '/loginScreen': (context) => LoginScreen(),
