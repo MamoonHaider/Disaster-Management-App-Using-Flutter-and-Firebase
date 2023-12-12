@@ -26,7 +26,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
     print('Build again');
     return Scaffold(
       appBar: AppBar(
-        title: Text("App Theme"),
+        title: const Text("App Theme"),
       ),
       body: Column(children: [
         Consumer<ThemeChangerProvider>(builder: (context, value, child) {
